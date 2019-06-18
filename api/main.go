@@ -16,6 +16,7 @@ func main() {
 	port, valid := os.LookupEnv("PORT")
 	if !valid {
 		logger.Log("Invalid port")
+		return
 	}
 
 	var databaseInfo db.DatabaseInfo
