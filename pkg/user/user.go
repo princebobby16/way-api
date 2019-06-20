@@ -1,9 +1,5 @@
 package user
 
-type Created struct {
-	UserId int `json:"user_id"`
-}
-
 type Verify struct {
 	UserId   int    `json:"user_id"`
 	Username string `json:"username"`
