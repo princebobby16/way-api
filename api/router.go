@@ -45,11 +45,18 @@ var routes = router.Routes{
 		HandlerFunction: handlers.SignUp,
 	},
 
-	// sign up
+	// verify
 	router.Route{
 		Name:            "Verify",
 		Method:          http.MethodPost,
 		Pattern:         "/users/verify",
 		HandlerFunction: handlers.Verify,
+	},
+	// log in
+	router.Route{
+		Name:            "Log In",
+		Method:          http.MethodPost,
+		Pattern:         "/users/login",
+		HandlerFunction: handlers.Login,
 	},
 }

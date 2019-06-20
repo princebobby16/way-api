@@ -29,23 +29,29 @@ func Traffic(inner http.Handler, name string) http.Handler {
 		})
 }
 
-func FileLog(object interface{}) error {
-	return nil
+// Echo prints logs to the terminal
+func Echo(message interface{}) {
+	pc := make([]uintptr, 10) // at least 1 entry needed
+	runtime.Callers(2, pc)
+	f := runtime.FuncForPC(pc[0])
+
+	log.Println(f.Name() + ": " + message.(string))
 }
 
-// Log outputs an object to the console
-func Log(objects ...interface{}) {
-	depth := 1
+// Store prints logs to a file
+func Store(message interface{}) {
+	pc := make([]uintptr, 10) // at least 1 entry needed
+	runtime.Callers(2, pc)
+	// f := runtime.FuncForPC(pc[0])
+	// Log to file
+}
 
-	pc, _, line, _ := runtime.Caller(depth)
+// Log prints logs to both
+func Log(message interface{}) {
+	pc := make([]uintptr, 10) // at least 1 entry needed
+	runtime.Callers(2, pc)
+	f := runtime.FuncForPC(pc[0])
 
-	fn := runtime.FuncForPC(pc)
-	var functionName string
-	if fn == nil {
-		functionName = "?()"
-	} else {
-		functionName = fn.Name()
-	}
-
-	log.Println(functionName, line, ":", objects)
+	// Log to both
+	log.Println(f.Name() + ": " + message.(string))
 }

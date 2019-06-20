@@ -2,18 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/api/handlers/GetUserContacts.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/handlers/Login.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/handlers/SendContactRequest.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/handlers/SendContactRequestResponse.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/handlers/SignUp.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/handlers/VerifyUser.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/response/error.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/response/fail.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/user/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/user/info.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/user/login.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/user/request.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/Login.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/handlers/Login.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/handlers/Login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/middelware.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/middelware.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/db/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/logger/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/logger/logger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/response/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/response/error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/user/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/user/user.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +23,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -55,7 +56,6 @@
         <option value="$PROJECT_DIR$/api/handlers/Index.go" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/api/routes/router.go" />
-        <option value="$PROJECT_DIR$/pkg/db/db.go" />
         <option value="$PROJECT_DIR$/pkg/request/request.go" />
         <option value="$PROJECT_DIR$/pkg/stringConversion/stringConversion.go" />
         <option value="$PROJECT_DIR$/database/db/dbconf.yml" />
@@ -63,19 +63,25 @@
         <option value="$PROJECT_DIR$/api/routes/routes.go" />
         <option value="$PROJECT_DIR$/api/routes.go" />
         <option value="$PROJECT_DIR$/api/.env" />
-        <option value="$PROJECT_DIR$/pkg/logger/logger.go" />
         <option value="$PROJECT_DIR$/api/main.go" />
         <option value="$PROJECT_DIR$/api/handlers/ContactRequestResponse.go" />
-        <option value="$PROJECT_DIR$/pkg/response/error.go" />
         <option value="$PROJECT_DIR$/pkg/response/fail.go" />
-        <option value="$PROJECT_DIR$/api/router.go" />
         <option value="$PROJECT_DIR$/api/handlers/VerifyUser.go" />
-        <option value="$PROJECT_DIR$/api/handlers/Login.go" />
         <option value="$PROJECT_DIR$/api/handlers/SendContactRequest.go" />
         <option value="$PROJECT_DIR$/api/handlers/SignUp.go" />
         <option value="$PROJECT_DIR$/api/handlers/SendContactRequestResponse.go" />
         <option value="$PROJECT_DIR$/api/handlers/GetUserContacts.go" />
+        <option value="$PROJECT_DIR$/api/router.go" />
+        <option value="$PROJECT_DIR$/pkg/db/db.go" />
+        <option value="$PROJECT_DIR$/pkg/user/info.go" />
+        <option value="$PROJECT_DIR$/pkg/logger/logger.go" />
+        <option value="$PROJECT_DIR$/pkg/user/request.go" />
         <option value="$PROJECT_DIR$/pkg/user/user.go" />
+        <option value="$PROJECT_DIR$/pkg/response/error.go" />
+        <option value="$PROJECT_DIR$/api/middelware.go" />
+        <option value="$PROJECT_DIR$/services/Login.go" />
+        <option value="$PROJECT_DIR$/pkg/user/login.go" />
+        <option value="$PROJECT_DIR$/api/handlers/Login.go" />
       </list>
     </option>
   </component>
@@ -127,6 +133,11 @@
             </path>
             <path>
               <item name="way" type="b2602c69:ProjectViewProjectNode" />
+              <item name="way" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="way" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -172,7 +183,7 @@
   <component name="ToolWindowManager">
     <frame x="59" y="25" width="1861" height="1055" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23140496" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24242425" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -222,9 +233,6 @@
     <entry file="file://$PROJECT_DIR$/middelware.go" />
     <entry file="file://$PROJECT_DIR$/router.go" />
     <entry file="file://$PROJECT_DIR$/models/route.go" />
-    <entry file="file://$PROJECT_DIR$/api/middelware.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/pkg/index/index.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -262,13 +270,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/db/db.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/db/dbconf.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
@@ -280,20 +281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
           <caret line="84" column="24" lean-forward="true" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/logger/logger.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="n#!!block;n#Traffic#0" />
-            <element signature="e#256#566#0" />
-            <element signature="e#365#507#0" />
-            <element signature="n#!!block;n#FileLog#0" />
-            <element signature="n#!!block;n#Log#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -318,13 +305,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/response/error.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pkg/response/fail.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
@@ -332,27 +312,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="796">
-          <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/handlers/VerifyUser.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="46" selection-end-column="1" />
-          <folding>
-            <element signature="e#18#124#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/handlers/Login.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
           <folding>
             <element signature="e#18#124#0" expanded="true" />
           </folding>
@@ -396,10 +359,89 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/user/info.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="65" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/user/request.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+          <folding>
+            <element signature="e#14#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/logger/logger.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="48" column="17" lean-forward="true" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!block;n#Traffic#0" />
+            <element signature="n#!!block;n#Echo#0" />
+            <element signature="n#!!block;n#Store#0" />
+            <element signature="n#!!block;n#Log#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pkg/user/user.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="822">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="442">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/db/db.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="796">
+          <caret line="59" column="39" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/middelware.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1300">
+          <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/Login.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1534">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/user/login.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2808">
+          <caret line="116" column="15" selection-start-line="116" selection-start-column="15" selection-end-line="116" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/handlers/Login.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/response/error.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
         </state>
       </provider>
     </entry>

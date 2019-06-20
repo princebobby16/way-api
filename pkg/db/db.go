@@ -15,7 +15,7 @@ type DatabaseInfo struct {
 	DatabaseName string
 }
 
-var dbConnection *sql.DB
+var DBConnection *sql.DB
 
 // Connect connects to a database with the information provided in the DatabaseInfo struct
 func (databaseInfo *DatabaseInfo) Connect() error {
@@ -28,7 +28,7 @@ func (databaseInfo *DatabaseInfo) Connect() error {
 	if err != nil {
 		return err
 	}
-	dbConnection = db
+	DBConnection = db
 
 	err = db.Ping()
 	if err != nil {
@@ -42,7 +42,7 @@ func (databaseInfo *DatabaseInfo) Connect() error {
 Disconnect disconnects the api from the database connection
 */
 func (databaseInfo *DatabaseInfo) Disconnect() error {
-	err := dbConnection.Close()
+	err := DBConnection.Close()
 	if err != nil {
 		return err
 	}
