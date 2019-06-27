@@ -21,28 +21,24 @@ func SignUp(newUser user.AddUserRequestBody) (user.AddUserResponseBody, int, str
 	)
 
 
-	// Todo: abstract pin generation and saving to new endpoint /users/newpin
-	// create confirmation pin
-	temporaryPin := encodeToString(5)
-
-	// set expiration date
-
-logger.Log(temporaryPin)
-
-	// check username
+	// save new user
 	err := db.DBConnection.QueryRow(insertUserQuery, newUser.FirstName, newUser.LastName, newUser.PhoneNumber).Scan(&lastInsertedId)
 	if err != nil {
 		logger.Log(err)
 		return successResponse, 400, "invalid phone number", err
 	}
 
+	// send temporary pin
+
 	// todo: send confirmation pin
+	// Todo: abstract pin generation and saving to new endpoint /users/newpin {phone_number} or the function
 
 	successResponse.UserId = lastInsertedId
 
-	return successResponse, 200, "logged in", nil
+	return successResponse, 200, "user created", nil
 
 }
+
 
 func encodeToString(max int) string {
 	b := make([]byte, max)

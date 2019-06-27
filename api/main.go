@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"way/api/handler"
+	"way/api/multiplexer"
 	"way/pkg/db"
 	"way/pkg/logger"
 )
@@ -69,6 +71,9 @@ func main() {
 		}
 	}()
 
+	router := multiplexer.Router()
+	router.Use(handler.JSONMiddleware)
+
 	// cors
 	origins := handlers.AllowedOrigins([]string{"*"})
 	headers := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-EventType"})
@@ -80,15 +85,13 @@ func main() {
 		http.MethodOptions,
 	})
 
-	router := NewRouter()
-
-	logger.Log("starting http server on ", port)
+	logger.Log("starting http server on " + port)
 	// on the testing, dev server
 	server := &http.Server{
 		Addr:    fmt.Sprintf(":%v", port),
 		Handler: handlers.CORS(origins, headers, methods)(router),
 	}
 
-	router.Use(JSONMiddleware)
+
 	log.Fatal(server.ListenAndServe())
 }

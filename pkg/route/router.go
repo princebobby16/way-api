@@ -1,10 +1,10 @@
-package router
+package route
 
 import (
 	"net/http"
 )
 
-// Route is the type for the router handled by this Api
+// Route is the type for the route handled by this Api
 type Route struct {
 	Name            string
 	Method          string
@@ -12,5 +12,5 @@ type Route struct {
 	HandlerFunction http.HandlerFunc
 }
 
-// Routes is an array of router
+// Routes is an array of route
 type Routes []Route
