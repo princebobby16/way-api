@@ -8,11 +8,12 @@ import (
 )
 
 const (
-	Index           = "Index"
-	CreateUser      = "Create User"
-	Login           = "Log In"
-	Logout          = "Log Out"
-	VerifyUser="Verify user"
+	Index      = "Index"
+	CreateUser = "Create User"
+	Login      = "Log In"
+	Logout     = "Log Out"
+	VerifyUser = "Verify user"
+	AddContact = "Add contact"
 )
 
 var routes = route.Routes{
@@ -46,26 +47,29 @@ var routes = route.Routes{
 		Pattern:         "/users/login",
 		HandlerFunction: handler.Login,
 	},
+	// add contact
+	route.Route{
+		Name:            AddContact,
+		Method:          http.MethodPost,
+		Pattern:         "/users/{user_id}/contacts",
+		HandlerFunction: handler.AddContact,
+	},
 }
-
 
 // Router creates a new route for https requests to the API
 func Router() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 
-
 	for _, route := range routes {
 
-		if false {
-			router.Methods(route.Method).Path(route.Pattern).Name(route.Name).Handler(handler.ServiceAuthMiddleware(route.HandlerFunction))
+		if route.Name==AddContact {
+			router.Methods(route.Method).Path(route.Pattern).Name(route.Name).Handler(handler.UserAuthMiddleware(route.HandlerFunction))
 			continue
 		}
 
 		router.Methods(route.Method).Path(route.Pattern).Name(route.Name).Handler(route.HandlerFunction)
 
-
 	}
 
 	return router
 }
-

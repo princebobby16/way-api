@@ -81,7 +81,7 @@ func AdminAuthMiddleware(next http.HandlerFunc) http.Handler {
 }
 
 // Checks for valid Json Web Tokens for Service only routes
-func ServiceAuthMiddleware(next http.HandlerFunc) http.Handler {
+func UserAuthMiddleware(next http.HandlerFunc) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		authorizationHeader := req.Header.Get("authorization")
 		if authorizationHeader != "" {

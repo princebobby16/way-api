@@ -71,7 +71,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Call service
-	successResponse, code, message, err := services.SignUp(newUser)
+	successResponse, code, message, err := services.CreateUser(newUser)
 	if err != nil {
 		logger.Log(err)
 		w.WriteHeader(code)

@@ -8,7 +8,7 @@ import (
 	"way/pkg/user"
 )
 
-func SignUp(newUser user.AddUserRequestBody) (user.AddUserResponseBody, int, string, error) {
+func CreateUser(newUser user.AddUserRequestBody) (user.AddUserResponseBody, int, string, error) {
 
 	successResponse := user.AddUserResponseBody{}
 
