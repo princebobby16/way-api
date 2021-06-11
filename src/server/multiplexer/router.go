@@ -3,8 +3,8 @@ package multiplexer
 import (
 	"github.com/gorilla/mux"
 	"net/http"
-	"way/api/handler"
-	"way/pkg/route"
+	"way/src/server/handler"
+	"way/src/server/route"
 )
 
 const (
@@ -62,7 +62,7 @@ func Router() *mux.Router {
 
 	for _, route := range routes {
 
-		if route.Name==AddContact {
+		if route.Name== AddContact {
 			router.Methods(route.Method).Path(route.Pattern).Name(route.Name).Handler(handler.UserAuthMiddleware(route.HandlerFunction))
 			continue
 		}

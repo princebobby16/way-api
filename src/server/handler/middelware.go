@@ -9,7 +9,8 @@ import (
 	"net/http"
 	"strings"
 	"time"
-	"way/pkg/response"
+	"way/pkg/logger"
+	"way/src/server/response"
 )
 
 // JSONMiddleware is the middleware for setting the content-type of a response to JSON.
@@ -22,7 +23,7 @@ func JSONMiddleware(next http.Handler) http.Handler {
 	)
 }
 
-// Set's response Content Type to JSON
+// ResponseHeader Set's response Content Type to JSON
 func ResponseHeader(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Content-Type", "application/json")
@@ -30,7 +31,7 @@ func ResponseHeader(next http.Handler) http.Handler {
 	})
 }
 
-// Logs information about the current request
+// Log Logs information about the current request
 func Log(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
@@ -40,7 +41,7 @@ func Log(next http.Handler) http.Handler {
 	})
 }
 
-// Checks for valid Json Web Tokens for Administrator only routes
+// AdminAuthMiddleware Checks for valid Json Web Tokens for Administrator only routes
 func AdminAuthMiddleware(next http.HandlerFunc) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		authorizationHeader := req.Header.Get("authorization")
@@ -51,14 +52,24 @@ func AdminAuthMiddleware(next http.HandlerFunc) http.Handler {
 					if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 						return nil, fmt.Errorf("THERE WAS AN ERROR")
 					}
-					return []byte(webTokens.FolioAuthAdminKey), nil
+					return []byte("Mama"), nil
 				})
 				if err != nil {
 					log.Println(err)
 					w.WriteHeader(http.StatusInternalServerError)
-					json.NewEncoder(w).Encode(
-						response.ErrorResponse("Error", 500, "System error"),
+					err := json.NewEncoder(w).Encode(
+						response.Error{
+							Status: "Error",
+							Data: response.ErrorData{
+								Code:    500,
+								Message: "System error",
+							},
+						},
 					)
+					if err != nil {
+						logger.Echo(err)
+						return
+					}
 					return
 				}
 				if token.Valid {
@@ -66,21 +77,41 @@ func AdminAuthMiddleware(next http.HandlerFunc) http.Handler {
 					next(w, req)
 				} else {
 					w.WriteHeader(http.StatusBadRequest)
-					json.NewEncoder(w).Encode(
-						response.ErrorResponse("Error", 500, "invalid authorization token"),
+					err := json.NewEncoder(w).Encode(
+						response.Error{
+							Status: "Error",
+							Data: response.ErrorData{
+								Code:    500,
+								Message: "invalid authorization token",
+							},
+						},
 					)
+					if err != nil {
+						logger.Echo(err)
+						return
+					}
 					return
 				}
 			}
 		} else {
-			json.NewEncoder(w).Encode(
-				response.ErrorResponse("Error", 500, "authorization is required"),
+			err := json.NewEncoder(w).Encode(
+				response.Error{
+					Status: "Error",
+					Data: response.ErrorData{
+						Code:    500,
+						Message: "authorization is required",
+					},
+				},
 			)
+			if err != nil {
+				logger.Echo(err)
+				return
+			}
 		}
 	})
 }
 
-// Checks for valid Json Web Tokens for Service only routes
+// UserAuthMiddleware Checks for valid Json Web Tokens for Service only routes
 func UserAuthMiddleware(next http.HandlerFunc) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		authorizationHeader := req.Header.Get("authorization")
@@ -91,14 +122,24 @@ func UserAuthMiddleware(next http.HandlerFunc) http.Handler {
 					if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 						return nil, fmt.Errorf("INVALID TOKEN")
 					}
-					return []byte(webTokens.FolioAuthKey), nil
+					return []byte("dada"), nil
 				})
 				if err != nil {
 					log.Println(err)
 					w.WriteHeader(http.StatusInternalServerError)
-					json.NewEncoder(w).Encode(
-						response.ErrorResponse("Error", 500, "System error"),
+					err := json.NewEncoder(w).Encode(
+						response.Error{
+							Status: "Error",
+							Data: response.ErrorData{
+								Code:    500,
+								Message: "System error",
+							},
+						},
 					)
+					if err != nil {
+						logger.Echo(err)
+						return
+					}
 					return
 				}
 				if token.Valid {
@@ -106,16 +147,36 @@ func UserAuthMiddleware(next http.HandlerFunc) http.Handler {
 					next(w, req)
 				} else {
 					w.WriteHeader(http.StatusBadRequest)
-					json.NewEncoder(w).Encode(
-						response.ErrorResponse("Error", 500, "invalid authorization token"),
+					err := json.NewEncoder(w).Encode(
+						response.Error{
+							Status: "Error",
+							Data: response.ErrorData{
+								Code:    500,
+								Message: "invalid authorization token",
+							},
+						},
 					)
+					if err != nil {
+						logger.Echo(err)
+						return
+					}
 					return
 				}
 			}
 		} else {
-			json.NewEncoder(w).Encode(
-				response.ErrorResponse("Error", 500, "authorization is required"),
+			err := json.NewEncoder(w).Encode(
+				response.Error{
+					Status: "Error",
+					Data: response.ErrorData{
+						Code:    500,
+						Message: "authorization is required",
+					},
+				},
 			)
+			if err != nil {
+				logger.Echo(err)
+				return
+			}
 		}
 	})
 }

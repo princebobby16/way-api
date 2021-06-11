@@ -7,10 +7,10 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"way/api/handler"
-	"way/api/multiplexer"
 	"way/pkg/db"
 	"way/pkg/logger"
+	"way/src/server/handler"
+	"way/src/server/multiplexer"
 )
 
 func main() {
@@ -57,8 +57,8 @@ func main() {
 	// connect to database
 	err := databaseInfo.Connect()
 	if err != nil {
-		logger.Log(err)
-		return
+		log.Println(err)
+		//return
 	}
 	logger.Log("Database connection established")
 

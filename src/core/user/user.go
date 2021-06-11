@@ -1,16 +1,36 @@
-package services
+package user
 
 import (
 	"crypto/rand"
 	"io"
 	"way/pkg/db"
 	"way/pkg/logger"
-	"way/pkg/user"
 )
 
-func CreateUser(newUser user.AddUserRequestBody) (user.AddUserResponseBody, int, string, error) {
+type Verify struct {
+	UserId   int    `json:"user_id"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Pin      string `json:"pin"`
+}
 
-	successResponse := user.AddUserResponseBody{}
+type Verified struct {
+	LoginId int `json:"login_id"`
+}
+
+
+type ContactRequestSent struct {
+	ContactId int    `json:"contact_id"`
+	Status    string `json:"status"`
+}
+
+type ContactResponse struct {
+	Action string `json:"action"`
+}
+
+func CreateUser(newUser AddUserRequestBody) (AddUserResponseBody, int, string, error) {
+
+	successResponse := AddUserResponseBody{}
 
 	var (
 		insertUserQuery = `INSERT INTO way_api.user (first_name, last_name, phone_number)
@@ -53,4 +73,3 @@ func encodeToString(max int) string {
 }
 
 var table = [...]byte{'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
-

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"os"
-	"way/pkg/index"
+	"way/src/server/index"
 )
 
 func Index(w http.ResponseWriter, r *http.Request){
@@ -15,7 +15,7 @@ func Index(w http.ResponseWriter, r *http.Request){
 	}
 	w.WriteHeader(http.StatusOK)
 
-	indexResponse:=index.Index{
+	indexResponse:= index.Index{
 		Alive:       true,
 		Author:      "Benjy",
 		Maintainers: []string{},
