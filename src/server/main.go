@@ -58,7 +58,7 @@ func main() {
 	err := databaseInfo.Connect()
 	if err != nil {
 		log.Println(err)
-		//return
+		return
 	}
 	logger.Log("Database connection established")
 
