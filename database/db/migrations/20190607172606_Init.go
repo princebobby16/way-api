@@ -18,6 +18,7 @@ func Up_20190607172606(txn *sql.Tx) {
     		verified boolean NOT NULL DEFAULT false ,
     		temporary_pin character varying(6),
     		temporary_pin_expiry timestamp with time zone,
+    		last_location character varying (50),
     		created_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     		updated_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     		PRIMARY KEY (user_id)
