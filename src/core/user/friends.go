@@ -32,18 +32,10 @@ where rel.user_1 = $1 and rel.status = 'active' and u.user_id = rel.user_2;
 	)
 	logger.Log(getFriendsQuery)
 
-	//Id, err := strconv.ParseInt(userId, 10, 0)
-	//if err != nil {
-	//	return []Friend{}, 0, "", err
-	//}
-
-	//logger.Log(Id)
-
 	rows, err := db.DBConnection.Query(getFriendsQuery, &userId)
 	if err != nil {
 		return nil, 400, "", err
 	}
-	logger.Echo("hi")
 
 	for rows.Next() {
 		var friend Friend
