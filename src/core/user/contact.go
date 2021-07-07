@@ -10,13 +10,13 @@ const (
 )
 
 type AddContactRequestBody struct {
-	UserId int `json:"user_id"`
+	UserId    int `json:"user_id"`
 	ContactId int `json:"contact_id" validate:"required"`
 }
 
 type AddContactResponseBody struct {
-	ContactId int `json:"contact_id"`
-	Status string `json:"status"`
+	ContactId int    `json:"contact_id"`
+	Status    string `json:"status"`
 }
 
 func AddContact(newContact AddContactRequestBody) (AddContactResponseBody, int, string, error) {
@@ -31,9 +31,8 @@ func AddContact(newContact AddContactRequestBody) (AddContactResponseBody, int, 
 		lastInsertedId int
 	)
 
-
 	// save new user
-	err := db.DBConnection.QueryRow(insertUserQuery, newContact.UserId, newContact.ContactId, Pending,newContact.UserId).Scan(&lastInsertedId)
+	err := db.DBConnection.QueryRow(insertUserQuery, newContact.UserId, newContact.ContactId, Pending, newContact.UserId).Scan(&lastInsertedId)
 	if err != nil {
 		logger.Log(err)
 		return successResponse, 400, "invalid id", err
@@ -44,9 +43,8 @@ func AddContact(newContact AddContactRequestBody) (AddContactResponseBody, int, 
 	// todo: notify contact
 
 	successResponse.ContactId = newContact.ContactId
-	successResponse.Status= Pending
+	successResponse.Status = Pending
 
 	return successResponse, 200, "contact added", nil
 
 }
-

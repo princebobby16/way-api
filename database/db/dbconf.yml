@@ -1,3 +1,3 @@
 development:
   driver: postgres
-  open: user=way dbname=way sslmode=disable password=asd123
+  open: user=postgres dbname=way sslmode=disable password=postgres

@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -8,7 +7,7 @@ import (
 
 // Up is executed when this migration is applied
 func Up_20190607172606(txn *sql.Tx) {
-	_,err:=txn.Exec(`
+	_, err := txn.Exec(`
 		CREATE TABLE way_api."user"
 		(
 			user_id bigserial NOT NULL,
@@ -18,7 +17,7 @@ func Up_20190607172606(txn *sql.Tx) {
     		verified boolean NOT NULL DEFAULT false ,
     		temporary_pin character varying(6),
     		temporary_pin_expiry timestamp with time zone,
-    		last_location character varying (50),
+    		last_location character varying (50)[],
     		created_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     		updated_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     		PRIMARY KEY (user_id)
@@ -36,7 +35,7 @@ func Up_20190607172606(txn *sql.Tx) {
 		return
 	}
 
-	_,err=txn.Exec(`
+	_, err = txn.Exec(`
 		CREATE TABLE way_api."login"
 		(
 			login_id bigserial NOT NULL,
@@ -60,7 +59,7 @@ func Up_20190607172606(txn *sql.Tx) {
 		return
 	}
 
-	_,err=txn.Exec(`
+	_, err = txn.Exec(`
 		CREATE TABLE way_api."relationship"
 		(
 			relationship_id bigserial NOT NULL,
@@ -90,7 +89,7 @@ func Up_20190607172606(txn *sql.Tx) {
 
 // Down is executed when this migration is rolled back
 func Down_20190607172606(txn *sql.Tx) {
-	_,err:=txn.Exec(`
+	_, err := txn.Exec(`
 		DROP TABLE way_api."relationship",way_api."login",way_api."user"`)
 
 	if err != nil {

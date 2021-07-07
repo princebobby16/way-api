@@ -120,7 +120,6 @@ func ComparePasswords(password, hash string) error {
 	return nil
 }
 
-
 func LogIn(login LoginRequestBody) (LoginResponseBody, int, string, error) {
 
 	successResponse := LoginResponseBody{}
@@ -178,4 +177,3 @@ func LogIn(login LoginRequestBody) (LoginResponseBody, int, string, error) {
 	return successResponse, 200, "logged in", nil
 
 }
-

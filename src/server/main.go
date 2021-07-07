@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 	"way/pkg/db"
 	"way/pkg/logger"
 	"way/src/server/handler"
@@ -88,10 +89,12 @@ func main() {
 	logger.Log("starting http server on " + port)
 	// on the testing, dev server
 	server := &http.Server{
-		Addr:    fmt.Sprintf(":%v", port),
-		Handler: handlers.CORS(origins, headers, methods)(router),
+		Addr:         fmt.Sprintf(":%v", port),
+		WriteTimeout: time.Second * 15,
+		ReadTimeout:  time.Second * 15,
+		IdleTimeout:  time.Second * 60,
+		Handler:      handlers.CORS(origins, headers, methods)(router),
 	}
-
 
 	log.Fatal(server.ListenAndServe())
 }

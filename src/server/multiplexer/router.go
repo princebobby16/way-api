@@ -14,6 +14,7 @@ const (
 	Logout     = "Log Out"
 	VerifyUser = "Verify user"
 	AddContact = "Add contact"
+	GetFriends = "Get Friends"
 )
 
 var routes = route.Routes{
@@ -54,6 +55,14 @@ var routes = route.Routes{
 		Pattern:         "/users/{user_id}/contacts",
 		HandlerFunction: handler.AddContact,
 	},
+
+	// get friends
+	route.Route{
+		Name:            GetFriends,
+		Method:          http.MethodGet,
+		Pattern:         "/users/friends",
+		HandlerFunction: handler.GetFriends,
+	},
 }
 
 // Router creates a new route for https requests to the API
@@ -62,7 +71,7 @@ func Router() *mux.Router {
 
 	for _, route := range routes {
 
-		if route.Name== AddContact {
+		if route.Name == AddContact {
 			router.Methods(route.Method).Path(route.Pattern).Name(route.Name).Handler(handler.UserAuthMiddleware(route.HandlerFunction))
 			continue
 		}

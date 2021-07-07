@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="">
+    <list default="true" id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="added gitignore file">
+      <change afterPath="$PROJECT_DIR$/src/core/user/friends.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/handler/friend.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/db/dbconf.yml" beforeDir="false" afterPath="$PROJECT_DIR$/database/db/dbconf.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/user/contact.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/user/contact.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/user/info.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/user/info.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/user/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/user/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/user/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/user/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/multiplexer/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/multiplexer/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +190,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/server" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -194,14 +202,58 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/server" />
+      <recent name="$PROJECT_DIR$/src/core" />
       <recent name="$PROJECT_DIR$/api/multiplexer" />
       <recent name="$PROJECT_DIR$/api/handlers" />
       <recent name="$PROJECT_DIR$/api" />
-      <recent name="$PROJECT_DIR$/api/middleware" />
-      <recent name="$PROJECT_DIR$/api/routes" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="go build way/src/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="way" />
+      <working_directory value="$PROJECT_DIR$" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <kind value="PACKAGE" />
+      <package value="way/src/server" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/server/main.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build way/src/server" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task id="LOCAL-00001" summary="added gitignore file">
+      <created>1625322616556</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1625322616556</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="added gitignore file" />
+      <created>1625637164716</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1625637164716</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
   <component name="ToolWindowManager">
     <frame x="59" y="25" width="1861" height="1055" extended-state="6" />
     <layout>
@@ -249,6 +301,22 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added gitignore file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added gitignore file" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

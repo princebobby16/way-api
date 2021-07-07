@@ -41,4 +41,3 @@ func (i *AddUserRequestBody) FromJson(r *http.Request) error {
 	}
 	return nil
 }
-

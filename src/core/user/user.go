@@ -18,7 +18,6 @@ type Verified struct {
 	LoginId int `json:"login_id"`
 }
 
-
 type ContactRequestSent struct {
 	ContactId int    `json:"contact_id"`
 	Status    string `json:"status"`
@@ -40,7 +39,6 @@ func CreateUser(newUser AddUserRequestBody) (AddUserResponseBody, int, string, e
 		lastInsertedId int
 	)
 
-
 	// save new user
 	err := db.DBConnection.QueryRow(insertUserQuery, newUser.FirstName, newUser.LastName, newUser.PhoneNumber).Scan(&lastInsertedId)
 	if err != nil {
@@ -58,7 +56,6 @@ func CreateUser(newUser AddUserRequestBody) (AddUserResponseBody, int, string, e
 	return successResponse, 200, "user created", nil
 
 }
-
 
 func encodeToString(max int) string {
 	b := make([]byte, max)
