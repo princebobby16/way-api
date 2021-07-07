@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="added gitignore file">
-      <change afterPath="$PROJECT_DIR$/src/core/user/friends.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/handler/friend.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="edited gitignore to include dbconf.yml">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/db/dbconf.yml" beforeDir="false" afterPath="$PROJECT_DIR$/database/db/dbconf.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/user/contact.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/user/contact.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/user/info.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/user/info.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/user/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/user/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/user/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/user/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/multiplexer/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/multiplexer/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +241,21 @@
       <option name="presentableId" value="Default" />
       <updated>1625637164716</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="implement get friends">
+      <created>1625651557174</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1625651557174</updated>
+    </task>
+    <task id="LOCAL-00003" summary="edited gitignore to include dbconf.yml">
+      <created>1625651616449</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1625651616449</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -316,7 +320,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added gitignore file" />
-    <option name="LAST_COMMIT_MESSAGE" value="added gitignore file" />
+    <MESSAGE value="implement get friends" />
+    <MESSAGE value="edited gitignore to include dbconf.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="edited gitignore to include dbconf.yml" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
