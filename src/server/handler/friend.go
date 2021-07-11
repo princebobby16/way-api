@@ -34,7 +34,7 @@ func GetFriends(w http.ResponseWriter, r *http.Request) {
 		Status:  "success",
 	}
 
-	w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(code)
 	_ = json.NewEncoder(w).Encode(successResponse)
 	return
 }
