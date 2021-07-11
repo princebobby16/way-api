@@ -2,8 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="edited gitignore to include dbconf.yml">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/db/dbconf.yml" beforeDir="false" afterPath="$PROJECT_DIR$/database/db/dbconf.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/user/contact.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/user/friends.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/user/info.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/user/login.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/user/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/example.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/handler/Index.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/handler/contact.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/handler/friend.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/handler/middelware.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/handler/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/index/index.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/multiplexer/router.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/request/request.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/response/error.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/response/fail.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/route/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/logger/logger.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/user/contact.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/user/friends.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/user/info.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/user/login.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/user/user.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/example.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handler/Index.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handler/contact.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handler/friend.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handler/middelware.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handler/user.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/index/index.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/multiplexer/router.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/request/request.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/response/error.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/response/fail.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/route/router.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +130,9 @@
     <option name="height" value="1055" />
   </component>
   <component name="ProjectId" id="1toOaWFlsxUJ0sIFJ3R7EeAcstM" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -171,6 +214,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -319,6 +363,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="added gitignore file" />
     <MESSAGE value="implement get friends" />
     <MESSAGE value="edited gitignore to include dbconf.yml" />

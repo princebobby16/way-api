@@ -2,8 +2,8 @@ package user
 
 import (
 	"github.com/lib/pq"
+	"log"
 	"way/pkg/db"
-	"way/pkg/logger"
 )
 
 type Friend struct {
@@ -30,7 +30,7 @@ from way_api.user u, way_api.relationship rel
 where rel.user_1 = $1 and rel.status = 'active' and u.user_id = rel.user_2;
 `
 	)
-	logger.Log(getFriendsQuery)
+	log.Println(getFriendsQuery)
 
 	rows, err := db.DBConnection.Query(getFriendsQuery, &userId)
 	if err != nil {

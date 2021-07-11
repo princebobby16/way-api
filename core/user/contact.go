@@ -1,8 +1,8 @@
 package user
 
 import (
+	"log"
 	"way/pkg/db"
-	"way/pkg/logger"
 )
 
 const (
@@ -34,7 +34,7 @@ func AddContact(newContact AddContactRequestBody) (AddContactResponseBody, int, 
 	// save new user
 	err := db.DBConnection.QueryRow(insertUserQuery, newContact.UserId, newContact.ContactId, Pending, newContact.UserId).Scan(&lastInsertedId)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		return successResponse, 400, "invalid id", err
 	}
 

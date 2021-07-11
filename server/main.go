@@ -9,16 +9,15 @@ import (
 	"os"
 	"time"
 	"way/pkg/db"
-	"way/pkg/logger"
-	"way/src/server/handler"
-	"way/src/server/multiplexer"
+	"way/server/handler"
+	"way/server/multiplexer"
 )
 
 func main() {
 	// get port
 	port, valid := os.LookupEnv("PORT")
 	if !valid {
-		logger.Log("Invalid port")
+		log.Println("Invalid port")
 		return
 	}
 
@@ -27,31 +26,31 @@ func main() {
 	// get database url
 	databaseInfo.Host, valid = os.LookupEnv("DATABASE_URL")
 	if !valid {
-		logger.Log("invalid database_url")
+		log.Println("invalid database_url")
 		return
 	}
 	// get database port
 	databaseInfo.Port, valid = os.LookupEnv("DATABASE_PORT")
 	if !valid {
-		logger.Log("invalid database_port")
+		log.Println("invalid database_port")
 		return
 	}
 	// get database user
 	databaseInfo.User, valid = os.LookupEnv("DATABASE_USER")
 	if !valid {
-		logger.Log("invalid database_user")
+		log.Println("invalid database_user")
 		return
 	}
 	// get database password
 	databaseInfo.Password, valid = os.LookupEnv("DATABASE_PASSWORD")
 	if !valid {
-		logger.Log("invalid database_password")
+		log.Println("invalid database_password")
 		return
 	}
 	// get database name
 	databaseInfo.DatabaseName, valid = os.LookupEnv("DATABASE_NAME")
 	if !valid {
-		logger.Log("invalid database_name")
+		log.Println("invalid database_name")
 		return
 	}
 
@@ -61,13 +60,13 @@ func main() {
 		log.Println(err)
 		return
 	}
-	logger.Log("Database connection established")
+	log.Println("Database connection established")
 
 	// Close database connection when program exits
 	defer func() {
 		err = databaseInfo.Disconnect()
 		if err != nil {
-			logger.Log(err)
+			log.Println(err)
 			return
 		}
 	}()
@@ -86,7 +85,7 @@ func main() {
 		http.MethodOptions,
 	})
 
-	logger.Log("starting http server on " + port)
+	log.Println("starting http server on " + port)
 	// on the testing, dev server
 	server := &http.Server{
 		Addr:         fmt.Sprintf(":%v", port),

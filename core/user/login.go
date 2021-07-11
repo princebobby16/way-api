@@ -8,7 +8,6 @@ import (
 	"log"
 	"net/http"
 	"way/pkg/db"
-	"way/pkg/logger"
 )
 
 const (
@@ -135,7 +134,7 @@ func LogIn(login LoginRequestBody) (LoginResponseBody, int, string, error) {
 	// check username
 	row, err := db.DBConnection.Query(getUserData, login.Username)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		return successResponse, 400, "invalid username or password", err
 	}
 
@@ -146,14 +145,14 @@ func LogIn(login LoginRequestBody) (LoginResponseBody, int, string, error) {
 		&userData.Password,
 	)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		return successResponse, 500, "internal server error", err
 	}
 
 	// compare passwords
 	err = ComparePasswords(login.Password, userData.Password)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		return successResponse, 400, "invalid username or password", err
 	}
 

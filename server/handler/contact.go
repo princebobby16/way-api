@@ -2,25 +2,25 @@ package handler
 
 import (
 	"encoding/json"
-	"github.com/go-playground/validator"
 	"github.com/gorilla/mux"
+	"gopkg.in/go-playground/validator.v9"
 	"io/ioutil"
+	"log"
 	"net/http"
-	"way/pkg/logger"
+	"way/core/user"
 	"way/pkg/stringConversion"
-	"way/src/core/user"
-	"way/src/server/response"
+	"way/server/response"
 )
 
 func AddContact(w http.ResponseWriter, r *http.Request) {
-	logger.Log("handler: requesting contact")
+	log.Println("handler: requesting contact")
 
 	// get user_id from uri
 	vars := mux.Vars(r)
 
 	userId, err := stringConversion.ConvertStringToInt(vars["user_id"])
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -40,7 +40,7 @@ func AddContact(w http.ResponseWriter, r *http.Request) {
 	// Get new contact object
 	requestBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -54,12 +54,12 @@ func AddContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	logger.Log(string(requestBody))
+	log.Println(string(requestBody))
 
 	// decode body
 	err = json.Unmarshal(requestBody, &newContact)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -73,12 +73,12 @@ func AddContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	logger.Log(userId)
+	log.Println(userId)
 
 	// check required fields
 	err = validator.New().Struct(newContact)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -95,7 +95,7 @@ func AddContact(w http.ResponseWriter, r *http.Request) {
 	// Call service
 	successResponse, code, message, err := user.AddContact(newContact)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(code)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -115,13 +115,13 @@ func AddContact(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetContacts(w http.ResponseWriter, r *http.Request) {
-	logger.Log("handler: get contacts")
+	log.Println("handler: get contacts")
 
 	vars := mux.Vars(r)
 
 	userId, err := stringConversion.ConvertStringToInt(vars["user_id"])
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -134,7 +134,7 @@ func GetContacts(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	logger.Log(userId)
+	log.Println(userId)
 
 	// Call service
 
@@ -146,13 +146,13 @@ func GetContacts(w http.ResponseWriter, r *http.Request) {
 }
 
 func RespondToContactRequest(w http.ResponseWriter, r *http.Request) {
-	logger.Log("handler: responding to contact request")
+	log.Println("handler: responding to contact request")
 
 	vars := mux.Vars(r)
 
 	userId, err := stringConversion.ConvertStringToInt(vars["user_id"])
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -167,7 +167,7 @@ func RespondToContactRequest(w http.ResponseWriter, r *http.Request) {
 
 	contactId, err := stringConversion.ConvertStringToInt(vars["contact_id"])
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -184,16 +184,16 @@ func RespondToContactRequest(w http.ResponseWriter, r *http.Request) {
 
 	requestBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		return
 	}
 
-	logger.Log(string(requestBody))
+	log.Println(string(requestBody))
 
 	// decode body
 	err = json.Unmarshal(requestBody, &responseToContactRequestBody)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -207,8 +207,8 @@ func RespondToContactRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	logger.Log(contactId)
-	logger.Log(userId)
+	log.Println(contactId)
+	log.Println(userId)
 
 	// Call service
 

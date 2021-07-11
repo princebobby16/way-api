@@ -3,8 +3,8 @@ package multiplexer
 import (
 	"github.com/gorilla/mux"
 	"net/http"
-	"way/src/server/handler"
-	"way/src/server/route"
+	"way/server/handler"
+	"way/server/route"
 )
 
 const (

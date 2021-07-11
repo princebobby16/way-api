@@ -2,8 +2,8 @@ package user
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
-	"way/pkg/logger"
 )
 
 // Info is a model of the basic information that makes up a users
@@ -36,7 +36,7 @@ func (i Info) ToJson() ([]byte, error) {
 func (i *AddUserRequestBody) FromJson(r *http.Request) error {
 	err := json.NewDecoder(r.Body).Decode(i)
 	if err != nil {
-		logger.Echo(err.Error())
+		log.Println(err.Error())
 		return err
 	}
 	return nil

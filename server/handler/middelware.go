@@ -9,8 +9,7 @@ import (
 	"net/http"
 	"strings"
 	"time"
-	"way/pkg/logger"
-	"way/src/server/response"
+	"way/server/response"
 )
 
 // JSONMiddleware is the middleware for setting the content-type of a response to JSON.
@@ -67,7 +66,7 @@ func AdminAuthMiddleware(next http.HandlerFunc) http.Handler {
 						},
 					)
 					if err != nil {
-						logger.Echo(err)
+						log.Println(err)
 						return
 					}
 					return
@@ -87,7 +86,7 @@ func AdminAuthMiddleware(next http.HandlerFunc) http.Handler {
 						},
 					)
 					if err != nil {
-						logger.Echo(err)
+						log.Println(err)
 						return
 					}
 					return
@@ -104,7 +103,7 @@ func AdminAuthMiddleware(next http.HandlerFunc) http.Handler {
 				},
 			)
 			if err != nil {
-				logger.Echo(err)
+				log.Println(err)
 				return
 			}
 		}
@@ -137,7 +136,7 @@ func UserAuthMiddleware(next http.HandlerFunc) http.Handler {
 						},
 					)
 					if err != nil {
-						logger.Echo(err)
+						log.Println(err)
 						return
 					}
 					return
@@ -157,7 +156,7 @@ func UserAuthMiddleware(next http.HandlerFunc) http.Handler {
 						},
 					)
 					if err != nil {
-						logger.Echo(err)
+						log.Println(err)
 						return
 					}
 					return
@@ -174,7 +173,7 @@ func UserAuthMiddleware(next http.HandlerFunc) http.Handler {
 				},
 			)
 			if err != nil {
-				logger.Echo(err)
+				log.Println(err)
 				return
 			}
 		}

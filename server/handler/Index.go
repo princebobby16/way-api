@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"os"
-	"way/src/server/index"
+	"way/server/index"
 )
 
 func Index(w http.ResponseWriter, r *http.Request){

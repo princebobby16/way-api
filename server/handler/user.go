@@ -4,22 +4,21 @@ import (
 	"encoding/json"
 	"gopkg.in/go-playground/validator.v9"
 	"io/ioutil"
+	"log"
 	"net/http"
-
-	"way/pkg/logger"
-	"way/src/core/user"
-	"way/src/server/response"
+	"way/core/user"
+	"way/server/response"
 )
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
-	logger.Log("handler: creating user")
+	log.Println("handler: creating user")
 
 	var newUser user.AddUserRequestBody
 
 	// Get new user object
 	requestBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -33,12 +32,12 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	logger.Log(string(requestBody))
+	log.Println(requestBody)
 
 	// decode body
 	err = json.Unmarshal(requestBody, &newUser)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -56,7 +55,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	// check required fields
 	err = validator.New().Struct(newUser)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -73,7 +72,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	// Call service
 	successResponse, code, message, err := user.CreateUser(newUser)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(code)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -93,22 +92,21 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func Verify(w http.ResponseWriter, r *http.Request) {
-	logger.Log("handler: verifying user")
+	log.Println("handler: verifying user")
 
 	var unverifiedUser user.Verify
 
 	requestBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		return
 	}
 
-	logger.Log(string(requestBody))
-
+	log.Println(requestBody)
 	// decode body
 	err = json.Unmarshal(requestBody, &unverifiedUser)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -135,13 +133,13 @@ func Verify(w http.ResponseWriter, r *http.Request) {
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
-	logger.Log("handler: user login")
+	log.Println("handler: user login")
 
 	var userLogin user.LoginRequestBody
 
 	requestBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -155,13 +153,13 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	logger.Log(string(requestBody))
+	log.Println(requestBody)
 
 	// decode body
 	err = json.Unmarshal(requestBody, &userLogin)
 	if err != nil {
-		logger.Log(err)
-		w.WriteHeader(http.StatusBadRequest)
+	log.Println(err)
+	w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
 				Status: "",
@@ -178,7 +176,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	// check required fields
 	err = validator.New().Struct(userLogin)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
@@ -196,7 +194,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	// Call service
 	successResponse, code, message, err := user.LogIn(userLogin)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		w.WriteHeader(code)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{

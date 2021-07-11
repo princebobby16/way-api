@@ -2,19 +2,19 @@ package handler
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
-	"way/pkg/logger"
-	"way/src/core/user"
-	"way/src/server/response"
+	"way/core/user"
+	"way/server/response"
 )
 
 func GetFriends(w http.ResponseWriter, r *http.Request) {
 	userId := r.URL.Query().Get("user_id")
-	logger.Echo(userId)
+	log.Println(userId)
 
 	friends, code, msg, err := user.GetFriends(userId)
 	if err != nil {
-		logger.Log(err.Error())
+		log.Println(err.Error())
 		w.WriteHeader(code)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{

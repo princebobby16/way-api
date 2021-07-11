@@ -3,8 +3,8 @@ package user
 import (
 	"crypto/rand"
 	"io"
+	"log"
 	"way/pkg/db"
-	"way/pkg/logger"
 )
 
 type Verify struct {
@@ -42,7 +42,7 @@ func CreateUser(newUser AddUserRequestBody) (AddUserResponseBody, int, string, e
 	// save new user
 	err := db.DBConnection.QueryRow(insertUserQuery, newUser.FirstName, newUser.LastName, newUser.PhoneNumber).Scan(&lastInsertedId)
 	if err != nil {
-		logger.Log(err)
+		log.Println(err)
 		return successResponse, 400, "invalid phone number", err
 	}
 
