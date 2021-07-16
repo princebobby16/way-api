@@ -8,9 +8,18 @@ import (
 // Up is executed when this migration is applied
 func Up_20190607172606(txn *sql.Tx) {
 	_, err := txn.Exec(`
+		CREATE EXTENSION IF NOT EXISTS "uuid-ossp";		
+		`)
+
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	_, err = txn.Exec(`
 		CREATE TABLE way_api."user"
 		(
-			user_id bigserial NOT NULL,
+			user_id UUID DEFAULT uuid_generate_v1() NOT NULL,
     		first_name character varying(100),
     		last_name character varying(100) NOT NULL,
     		phone_number character varying(12) NOT NULL UNIQUE,
@@ -38,8 +47,8 @@ func Up_20190607172606(txn *sql.Tx) {
 	_, err = txn.Exec(`
 		CREATE TABLE way_api."login"
 		(
-			login_id bigserial NOT NULL,
-			user_id INTEGER NOT NULL REFERENCES way_api.user(user_id),
+			login_id UUID NOT NULL,
+			user_id UUID NOT NULL REFERENCES way_api.user(user_id),
     		username character varying(100) NOT NULL,
     		password character varying(200) NOT NULL,
     		created_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -63,10 +72,10 @@ func Up_20190607172606(txn *sql.Tx) {
 		CREATE TABLE way_api."relationship"
 		(
 			relationship_id bigserial NOT NULL,
-			user_1 INTEGER NOT NULL REFERENCES way_api.user(user_id),
-    		user_2 INTEGER NOT NULL REFERENCES way_api.user(user_id),
+			user_1 UUID NOT NULL REFERENCES way_api.user(user_id),
+    		user_2 UUID NOT NULL REFERENCES way_api.user(user_id),
     		status character varying(100) NOT NULL,
-    		last_actor INTEGER NOT NULL REFERENCES way_api.user(user_id),
+    		last_actor UUID NOT NULL REFERENCES way_api.user(user_id),
     		user_1_trusted boolean NOT NULL default false,
     		user_2_trusted boolean NOT NULL default false,
     		created_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,

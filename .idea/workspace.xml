@@ -2,48 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="edited gitignore to include dbconf.yml">
-      <change afterPath="$PROJECT_DIR$/core/user/contact.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/user/friends.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/user/info.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/user/login.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/user/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/example.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/handler/Index.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/handler/contact.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/handler/friend.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/handler/middelware.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/handler/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/index/index.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/multiplexer/router.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/request/request.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/response/error.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/response/fail.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/route/router.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/user/methods.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/user/model.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/user/service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/user/contact.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/friend/contact.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/user/friends.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/friend/friends.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/user/info.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/user/login.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/user/user.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/logger/logger.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/user/contact.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/user/friends.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/user/info.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/user/login.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/user/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/example.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handler/Index.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handler/contact.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handler/friend.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handler/middelware.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handler/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/index/index.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/multiplexer/router.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/request/request.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/response/error.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/response/fail.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/route/router.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handler/contact.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handler/contact.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handler/friend.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handler/friend.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handler/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handler/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/multiplexer/router.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +42,14 @@
   <component name="GOROOT" path="/usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
@@ -224,7 +208,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/server" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -236,11 +220,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/routes" />
+      <recent name="$PROJECT_DIR$/core/friend" />
       <recent name="$PROJECT_DIR$/src/server" />
       <recent name="$PROJECT_DIR$/src/core" />
       <recent name="$PROJECT_DIR$/api/multiplexer" />
-      <recent name="$PROJECT_DIR$/api/handlers" />
-      <recent name="$PROJECT_DIR$/api" />
     </key>
   </component>
   <component name="RunManager">

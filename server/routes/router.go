@@ -1,4 +1,4 @@
-package multiplexer
+package routes
 
 import (
 	"github.com/gorilla/mux"
@@ -16,6 +16,18 @@ const (
 	AddContact = "Add contact"
 	GetFriends = "Get Friends"
 )
+
+// Route is the type for the route handled by this Api
+type Route struct {
+	Name            string
+	Method          string
+	Pattern         string
+	HandlerFunction http.HandlerFunc
+}
+
+// Routes is an array of route
+type Routes []Route
+
 
 var routes = route.Routes{
 	// index
@@ -69,14 +81,14 @@ var routes = route.Routes{
 func Router() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 
-	for _, route := range routes {
+	for _, _route := range routes {
 
-		if route.Name == AddContact {
-			router.Methods(route.Method).Path(route.Pattern).Name(route.Name).Handler(handler.UserAuthMiddleware(route.HandlerFunction))
+		if _route.Name == AddContact {
+			router.Methods(_route.Method).Path(_route.Pattern).Name(_route.Name).Handler(handler.UserAuthMiddleware(_route.HandlerFunction))
 			continue
 		}
 
-		router.Methods(route.Method).Path(route.Pattern).Name(route.Name).Handler(route.HandlerFunction)
+		router.Methods(_route.Method).Path(_route.Pattern).Name(_route.Name).Handler(_route.HandlerFunction)
 
 	}
 

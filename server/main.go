@@ -10,10 +10,12 @@ import (
 	"time"
 	"way/pkg/db"
 	"way/server/handler"
-	"way/server/multiplexer"
+	"way/server/routes"
 )
 
 func main() {
+
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	// get port
 	port, valid := os.LookupEnv("PORT")
 	if !valid {
@@ -71,7 +73,7 @@ func main() {
 		}
 	}()
 
-	router := multiplexer.Router()
+	router := routes.Router()
 	router.Use(handler.JSONMiddleware)
 
 	// cors

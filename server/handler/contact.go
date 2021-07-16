@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"way/core/friend"
 	"way/core/user"
 	"way/pkg/stringConversion"
 	"way/server/response"
@@ -33,7 +34,7 @@ func AddContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var newContact user.AddContactRequestBody
+	var newContact friend.AddContactRequestBody
 
 	newContact.UserId = userId
 
@@ -93,7 +94,7 @@ func AddContact(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Call service
-	successResponse, code, message, err := user.AddContact(newContact)
+	successResponse, code, message, err := friend.AddContact(newContact)
 	if err != nil {
 		log.Println(err)
 		w.WriteHeader(code)

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"way/core/user"
+	"way/core/friend"
 	"way/server/response"
 )
 
@@ -12,7 +12,7 @@ func GetFriends(w http.ResponseWriter, r *http.Request) {
 	userId := r.URL.Query().Get("user_id")
 	log.Println(userId)
 
-	friends, code, msg, err := user.GetFriends(userId)
+	friends, code, msg, err := friend.GetFriends(userId)
 	if err != nil {
 		log.Println(err.Error())
 		w.WriteHeader(code)
@@ -28,7 +28,7 @@ func GetFriends(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	successResponse := &user.GetFriendsResponse{
+	successResponse := &friend.GetFriendsResponse{
 		UserId:  userId,
 		Friends: friends,
 		Status:  "success",

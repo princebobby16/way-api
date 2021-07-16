@@ -13,7 +13,7 @@ import (
 func CreateUser(w http.ResponseWriter, r *http.Request) {
 	log.Println("handler: creating user")
 
-	var newUser user.AddUserRequestBody
+	var newUser user.CreateUserRequestBody
 
 	// Get new user object
 	requestBody, err := ioutil.ReadAll(r.Body)
@@ -32,7 +32,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Println(requestBody)
+	log.Println(string(requestBody))
 
 	// decode body
 	err = json.Unmarshal(requestBody, &newUser)

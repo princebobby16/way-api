@@ -1,4 +1,4 @@
-package user
+package friend
 
 import (
 	"github.com/lib/pq"
