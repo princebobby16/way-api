@@ -2,24 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="edited gitignore to include dbconf.yml">
-      <change afterPath="$PROJECT_DIR$/core/user/methods.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/user/model.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/user/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/user/contact.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/friend/contact.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/user/friends.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/friend/friends.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/user/info.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/user/login.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/user/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/user/methods.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/user/methods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/user/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/user/model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/user/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/user/service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/handler/contact.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handler/contact.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/handler/friend.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handler/friend.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/handler/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handler/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/multiplexer/router.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +196,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />

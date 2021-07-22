@@ -8,7 +8,9 @@ import (
 	"log"
 	"net/http"
 )
+
 var table = [...]byte{'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
+
 const (
 	// Cost is the integer value used by bcrypt in password hashing
 	Cost int = 15
@@ -61,8 +63,8 @@ func (login *LoginRequestBody) FromJson(r *http.Request) error {
 
 // HashPassword creates a salted hash of a string.
 // It returns the hash of the password and an error with is nil if the password is successfully hashed.
-func (login *LoginRequestBody) HashPassword() (string, error) {
-	hash, err := bcrypt.GenerateFromPassword([]byte(login.Password), Cost)
+func HashPassword(password string) (string, error) {
+	hash, err := bcrypt.GenerateFromPassword([]byte(password), Cost)
 	if err != nil {
 		return "", err
 	}

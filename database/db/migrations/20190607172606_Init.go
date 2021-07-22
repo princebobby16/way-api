@@ -47,7 +47,7 @@ func Up_20190607172606(txn *sql.Tx) {
 	_, err = txn.Exec(`
 		CREATE TABLE way_api."login"
 		(
-			login_id UUID NOT NULL,
+			login_id UUID DEFAULT uuid_generate_v1() NOT NULL,
 			user_id UUID NOT NULL REFERENCES way_api.user(user_id),
     		username character varying(100) NOT NULL,
     		password character varying(200) NOT NULL,

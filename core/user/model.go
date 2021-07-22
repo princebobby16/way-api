@@ -10,9 +10,12 @@ type User struct {
 
 // CreateUserRequestBody is the json body of a request to create a user
 type CreateUserRequestBody struct {
-	FirstName   string `json:"first_name"`
-	LastName    string `json:"last_name" validate:"required"`
-	PhoneNumber string `json:"phone_number" validate:"required"`
+	FirstName       string `json:"first_name"`
+	LastName        string `json:"last_name" validate:"required"`
+	PhoneNumber     string `json:"phone_number" validate:"required"`
+	UserName        string `json:"username" validate:"required" `
+	Password        string `json:"password" validate:"required" `
+	ConfirmPassword string `json:"confirm_password" validate:"required" `
 }
 
 // AddUserResponseBody is the response object of successful user creation
@@ -28,7 +31,7 @@ type LoginRequestBody struct {
 
 // LoginResponseBody is the success response sent when a user is verified and login credentials are saved in the database
 type LoginResponseBody struct {
-	Token   string `json:"token"`
+	Token string `json:"token"`
 }
 
 // LoginData is the data model of a login in the database
@@ -40,7 +43,6 @@ type LoginData struct {
 	CreatedAt string `json:"created_at"`
 	UpdateAt  string `json:"update_at"`
 }
-
 
 type Verify struct {
 	UserId   int    `json:"user_id"`
@@ -61,4 +63,3 @@ type ContactRequestSent struct {
 type ContactResponse struct {
 	Action string `json:"action"`
 }
-
