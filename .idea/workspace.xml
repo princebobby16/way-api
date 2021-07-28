@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="edited gitignore to include dbconf.yml">
+      <change beforePath="$PROJECT_DIR$/.idea/way.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/way.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/user/methods.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/user/methods.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/user/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/user/model.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/user/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/user/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handler/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handler/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/route/router.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +35,7 @@
       <find>timest</find>
     </findStrings>
   </component>
-  <component name="GOROOT" path="/usr/local/go" />
+  <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -192,8 +200,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -216,6 +226,14 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="way" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build way/src/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="way" />
       <working_directory value="$PROJECT_DIR$" />
@@ -233,6 +251,15 @@
       <package value="way/src/server" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/src/server/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="way" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="DIRECTORY" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <method v="2" />
     </configuration>
     <recent_temporary>

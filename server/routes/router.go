@@ -4,7 +4,6 @@ import (
 	"github.com/gorilla/mux"
 	"net/http"
 	"way/server/handler"
-	"way/server/route"
 )
 
 const (
@@ -15,6 +14,7 @@ const (
 	VerifyUser = "Verify user"
 	AddContact = "Add contact"
 	GetFriends = "Get Friends"
+	requestPIN ="Get PIN"
 )
 
 // Route is the type for the route handled by this Api
@@ -28,10 +28,9 @@ type Route struct {
 // Routes is an array of route
 type Routes []Route
 
-
-var routes = route.Routes{
+var routes = Routes{
 	// index
-	route.Route{
+	Route{
 		Name:            Index,
 		Method:          http.MethodGet,
 		Pattern:         "/",
@@ -39,7 +38,7 @@ var routes = route.Routes{
 	},
 
 	// sign up
-	route.Route{
+	Route{
 		Name:            CreateUser,
 		Method:          http.MethodPost,
 		Pattern:         "/users",
@@ -47,21 +46,21 @@ var routes = route.Routes{
 	},
 
 	// verify
-	route.Route{
+	Route{
 		Name:            VerifyUser,
 		Method:          http.MethodPost,
 		Pattern:         "/users/verify",
 		HandlerFunction: handler.Verify,
 	},
 	// log in
-	route.Route{
+	Route{
 		Name:            Login,
 		Method:          http.MethodPost,
 		Pattern:         "/users/login",
 		HandlerFunction: handler.Login,
 	},
 	// add contact
-	route.Route{
+	Route{
 		Name:            AddContact,
 		Method:          http.MethodPost,
 		Pattern:         "/users/{user_id}/contacts",
@@ -69,11 +68,18 @@ var routes = route.Routes{
 	},
 
 	// get friends
-	route.Route{
+	Route{
 		Name:            GetFriends,
 		Method:          http.MethodGet,
 		Pattern:         "/users/friends",
 		HandlerFunction: handler.GetFriends,
+	},
+	// request verification PIN
+	Route{
+		Name:            requestPIN,
+		Method:          http.MethodPost,
+		Pattern:         "/users/pin",
+		HandlerFunction: handler.RequestPIN,
 	},
 }
 

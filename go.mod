@@ -15,6 +15,7 @@ require (
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/lib/pq v1.10.2
 	github.com/mattn/go-sqlite3 v1.14.8 // indirect
+	github.com/sfreiberg/gotwilio v0.0.0-20201211181435-c426a3710ab5
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a
 	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect

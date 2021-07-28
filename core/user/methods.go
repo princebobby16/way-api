@@ -1,24 +1,26 @@
 package user
 
 import (
-	"crypto/rand"
+	random "crypto/rand"
 	"encoding/json"
 	"golang.org/x/crypto/bcrypt"
 	"io"
 	"log"
+	"math/rand"
 	"net/http"
+	"strconv"
 )
-
-var table = [...]byte{'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
 
 const (
 	// Cost is the integer value used by bcrypt in password hashing
 	Cost int = 15
 )
 
+var table = [...]byte{'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
+
 func encodeToString(max int) string {
 	b := make([]byte, max)
-	n, err := io.ReadAtLeast(rand.Reader, b, max)
+	n, err := io.ReadAtLeast(random.Reader, b, max)
 	if n != max {
 		panic(err)
 	}
@@ -81,4 +83,34 @@ func ComparePasswords(password, hash string) error {
 		return err
 	}
 	return nil
+}
+
+func SendSMS(message string, numberTo string) (int, error) {
+
+	urlStr := "https://sms.arkesel.com/sms/api?action=send-sms&api_key=OnlvZm9ycmVhbC5jb20=&%20to=" + numberTo + "&from=Way&sms=" + message
+
+	client := &http.Client{}
+	req, _ := http.NewRequest("GET", urlStr, nil)
+	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Println(err)
+		return 500, err
+	}
+	if resp.StatusCode >= 200 && resp.StatusCode < 300 {
+		log.Println(resp.StatusCode)
+		log.Println(resp.Body)
+		log.Println(resp.Request.RequestURI)
+		return 201, err
+
+	} else {
+		log.Println(resp.Status)
+		return resp.StatusCode, nil
+	}
+}
+
+func randomNumber(min int, max int) string {
+	return strconv.Itoa(rand.Intn(max-min) + min)
 }

@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"log"
+	"math/rand"
+	"time"
 	"way/pkg/db"
 )
 
@@ -60,15 +62,48 @@ func CreateUser(newUser CreateUserRequestBody) (AddUserResponseBody, int, string
 		return response, 500, "internal server error", err
 	}
 
-	// send temporary pin
-
-	// todo: send confirmation pin
-	// Todo: abstract pin generation and saving to new endpoint /users/newpin {phone_number} or the function
-
 	response.UserId = userId
 
 	return response, 200, "user created", nil
 
+}
+
+func SendPIN(newUser RequestPINBody) (int, string, error) {
+
+	// todo: check if phone number is in the system and unverified
+
+	// generate otp
+	rand.Seed(time.Now().UnixNano())
+	pin := randomNumber(1000, 9999)
+
+	// set expiry date
+	t := time.Now()
+	expiration := t.Add(time.Minute * 10)
+
+	// save to db
+	//insert pin into user table
+	insertPINQuery := `UPDATE way_api.user SET temporary_pin = $1, temporary_pin_expiry = $2
+		WHERE phone_number = $3
+`
+
+	log.Println("Hello")
+	result, err := db.DBConnection.Exec(insertPINQuery, pin, expiration, newUser.PhoneNumber)
+	if err != nil {
+		log.Println(err)
+		return 500, "internal server error", err
+	}
+	rows,_:=result.RowsAffected()
+	if rows != 1 {
+		return 400, "invalid phone number", errors.New("invalid phone number")
+	}
+
+	message := pin
+	code, err := SendSMS(message, newUser.PhoneNumber)
+	if err != nil {
+		log.Println(err)
+		return code, "fail", err
+	}
+	return 200, "success", nil
 }
 
 func (login *LoginRequestBody) CreateToken() (string, error) {
