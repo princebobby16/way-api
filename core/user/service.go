@@ -86,13 +86,12 @@ func SendPIN(newUser RequestPINBody) (int, string, error) {
 		WHERE phone_number = $3
 `
 
-	log.Println("Hello")
 	result, err := db.DBConnection.Exec(insertPINQuery, pin, expiration, newUser.PhoneNumber)
 	if err != nil {
 		log.Println(err)
 		return 500, "internal server error", err
 	}
-	rows,_:=result.RowsAffected()
+	rows, _ := result.RowsAffected()
 	if rows != 1 {
 		return 400, "invalid phone number", errors.New("invalid phone number")
 	}
@@ -104,6 +103,62 @@ func SendPIN(newUser RequestPINBody) (int, string, error) {
 		return code, "fail", err
 	}
 	return 200, "success", nil
+}
+
+func VerifyUser(verifyBody VerificationRequestBody) (int, string, error) {
+	// an object of the database data we will work with
+	type dbData struct {
+		PhoneNumber string
+		PIN         string
+		Expiry      string
+	}
+
+	var d dbData
+
+	// check phone and pin
+	checkPhoneQuery := `SELECT phone_number,  temporary_pin, temporary_pin_expiry, verified FROM way_api.user WHERE phone_number=$1`
+
+	var isVerified bool
+
+	err := db.DBConnection.QueryRow(checkPhoneQuery, verifyBody.PhoneNumber).Scan(&d.PhoneNumber, &d.PIN, &d.Expiry, &isVerified)
+	if err != nil {
+		log.Println(err)
+		return 400, "invalid phone number", err
+	}
+
+	if isVerified {
+		return 400, "user already verified", errors.New("user already verified")
+	}
+
+	// compare pins
+	if d.PIN != verifyBody.Pin {
+		return 400, "invalid pin", errors.New("invalid pin")
+	}
+
+	// check pin expiry
+	expiry, err := time.Parse(time.RFC3339, d.Expiry)
+	if err != nil {
+		log.Println(err)
+		return 500, "internal server error", err
+	}
+
+	if time.Now().After(expiry) {
+		return 400, "your pin has expired", errors.New("your pin has expired")
+	}
+
+	// set user as verified
+	verifyQuery := `UPDATE way_api.user SET verified = true
+		WHERE phone_number = $1
+`
+
+	_, err = db.DBConnection.Exec(verifyQuery, verifyBody.PhoneNumber)
+	if err != nil {
+		log.Println(err)
+		return 500, "internal server error", err
+	}
+
+	return 201, "user verified successfully", nil
+
 }
 
 func (login *LoginRequestBody) CreateToken() (string, error) {

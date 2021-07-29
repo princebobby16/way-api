@@ -22,7 +22,7 @@ func Up_20190607172606(txn *sql.Tx) {
 			user_id UUID DEFAULT uuid_generate_v1() NOT NULL,
     		first_name character varying(100),
     		last_name character varying(100) NOT NULL,
-    		phone_number character varying(15) NOT NULL UNIQUE,
+    		phone_number character varying(12) NOT NULL UNIQUE,
     		verified boolean NOT NULL DEFAULT false ,
     		temporary_pin character varying(6),
     		temporary_pin_expiry timestamp with time zone,

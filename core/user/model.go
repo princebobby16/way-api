@@ -23,15 +23,9 @@ type AddUserResponseBody struct {
 	UserId string `json:"user_id"`
 }
 
-type SMSMessage struct {
-	Content string
-	To      string
-	Medium  string
-}
-
 // RequestPINBody is the json body of a request to cto send a temporary pin to a user
 type RequestPINBody struct {
-	PhoneNumber     string `json:"phone_number" validate:"required"`
+	PhoneNumber string `json:"phone_number" validate:"required"`
 }
 
 // LoginRequestBody represents a model of what login credentials look like.
@@ -55,11 +49,9 @@ type LoginData struct {
 	UpdateAt  string `json:"update_at"`
 }
 
-type Verify struct {
-	UserId   int    `json:"user_id"`
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Pin      string `json:"pin"`
+type VerificationRequestBody struct {
+	PhoneNumber string `json:"phone_number" validate:"required"`
+	Pin         string `json:"pin" validate:"required"`
 }
 
 type Verified struct {

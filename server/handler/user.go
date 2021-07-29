@@ -76,7 +76,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(code)
 		_ = json.NewEncoder(w).Encode(
 			response.Error{
-				Status: "",
+				Status: string(code),
 				Data: response.ErrorData{
 					Code:    code,
 					Message: message,
@@ -174,7 +174,7 @@ func RequestPIN(w http.ResponseWriter, r *http.Request) {
 func Verify(w http.ResponseWriter, r *http.Request) {
 	log.Println("handler: verifying user")
 
-	var unverifiedUser user.Verify
+	var verificationBody user.VerificationRequestBody
 
 	requestBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -184,7 +184,7 @@ func Verify(w http.ResponseWriter, r *http.Request) {
 
 	log.Println(requestBody)
 	// decode body
-	err = json.Unmarshal(requestBody, &unverifiedUser)
+	err = json.Unmarshal(requestBody, &verificationBody)
 	if err != nil {
 		log.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
@@ -193,7 +193,6 @@ func Verify(w http.ResponseWriter, r *http.Request) {
 				Status: "",
 				Data: response.ErrorData{
 					Code: 0,
-
 					Message: "JSON request object not properly formed",
 				},
 			},
@@ -202,13 +201,22 @@ func Verify(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Call service
-
-	successResponse := user.Verified{
-		LoginId: 7,
+	code, message, err := user.VerifyUser(verificationBody)
+	if err != nil {
+		log.Println(err)
+		w.WriteHeader(code)
+		_ = json.NewEncoder(w).Encode(
+			response.Error{
+				Status: string(code),
+				Data: response.ErrorData{
+					Code:    code,
+					Message: message,
+				},
+			},
+		)
+		return
 	}
-
 	w.WriteHeader(http.StatusCreated)
-	_ = json.NewEncoder(w).Encode(successResponse)
 	return
 }
 
