@@ -30,13 +30,13 @@ type RequestPINBody struct {
 
 // LoginRequestBody represents a model of what login credentials look like.
 type LoginRequestBody struct {
-	PhoneNumber string `json:"phone_number" validate:"required"`
-	Password    string `json:"password" validate:"required"`
+	Username string `json:"username" validate:"required"`
+	Password string `json:"password" validate:"required"`
 }
 
 // LoginResponseBody is the success response sent when a user is verified and login credentials are saved in the database
 type LoginResponseBody struct {
-	Token string `json:"token"`
+	Token TokenDetails `json:"token"`
 }
 
 // LoginData is the data model of a login in the database
@@ -47,6 +47,15 @@ type LoginData struct {
 	Password  string `json:"password"`
 	CreatedAt string `json:"created_at"`
 	UpdateAt  string `json:"update_at"`
+}
+
+type TokenDetails struct {
+	AccessToken  string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+	AccessUuid   string `json:"access_uuid"`
+	RefreshUuid  string `json:"refresh_uuid"`
+	AtExpires    int64  `json:"at_expires"`
+	RtExpires    int64  `json:"rt_expires"`
 }
 
 type VerificationRequestBody struct {

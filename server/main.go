@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gorilla/handlers"
+	"github.com/joho/godotenv"
 	_ "github.com/joho/godotenv/autoload"
 	"log"
 	"net/http"
@@ -14,6 +15,8 @@ import (
 )
 
 func main() {
+
+	godotenv.Load("../.env")
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	// get port

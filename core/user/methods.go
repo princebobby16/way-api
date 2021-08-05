@@ -3,12 +3,18 @@ package user
 import (
 	random "crypto/rand"
 	"encoding/json"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/twinj/uuid"
 	"golang.org/x/crypto/bcrypt"
 	"io"
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"strconv"
+	"way/pkg/redis"
+
+	"time"
 )
 
 const (
@@ -74,8 +80,7 @@ func HashPassword(password string) (string, error) {
 	return string(hash), nil
 }
 
-// Create token creates a JSON web token from a user's username and password
-
+// ComparePasswords compares a password with a hash and returns an error when the password provided does not produce the same hash
 func ComparePasswords(password, hash string) error {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	if err != nil {
@@ -113,4 +118,72 @@ func SendSMS(message string, numberTo string) (int, error) {
 
 func randomNumber(min int, max int) string {
 	return strconv.Itoa(rand.Intn(max-min) + min)
+}
+
+func CreateToken(userid string, loginId string) (TokenDetails, error) {
+
+	var td TokenDetails
+	td.AtExpires = time.Now().Add(time.Minute * 15).Unix()
+	td.AccessUuid = uuid.NewV4().String()
+
+	td.RtExpires = time.Now().Add(time.Hour * 24 * 7).Unix()
+	td.RefreshUuid = uuid.NewV4().String()
+
+	var err error
+	//Creating Access Token
+	atClaims := jwt.MapClaims{}
+	atClaims["authorized"] = true
+	atClaims["access_uuid"] = td.AccessUuid
+	atClaims["user_id"] = userid
+	atClaims["login_id"] = loginId
+	atClaims["exp"] = td.AtExpires
+	at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
+
+	secret, valid := os.LookupEnv("ACCESS_SECRET")
+	if !valid {
+		log.Println("Invalid secret")
+		return td, err
+	}
+
+	td.AccessToken, err = at.SignedString([]byte(secret))
+	if err != nil {
+		log.Println(err)
+		return td, err
+	}
+
+	//Creating Refresh Token
+	refreshSecret, valid := os.LookupEnv("REFRESH_SECRET")
+	if !valid {
+		log.Println("Invalid secret")
+		return td, err
+	}
+
+	rtClaims := jwt.MapClaims{}
+	rtClaims["refresh_uuid"] = td.RefreshUuid
+	rtClaims["user_id"] = userid
+	rtClaims["user_id"] = loginId
+	rtClaims["exp"] = td.RtExpires
+	rt := jwt.NewWithClaims(jwt.SigningMethodHS256, rtClaims)
+	td.RefreshToken, err = rt.SignedString([]byte(refreshSecret))
+	if err != nil {
+		log.Println(err)
+		return td, err
+	}
+	return td, nil
+}
+
+func CreateAuth(userid uint64, td *TokenDetails) error {
+	at := time.Unix(td.AtExpires, 0) //converting Unix to UTC(to Time object)
+	rt := time.Unix(td.RtExpires, 0)
+	now := time.Now()
+
+	errAccess := redis.Client.Set(td.AccessUuid, strconv.Itoa(int(userid)), at.Sub(now)).Err()
+	if errAccess != nil {
+		return errAccess
+	}
+	errRefresh := redis.Client.Set(td.RefreshUuid, strconv.Itoa(int(userid)), rt.Sub(now)).Err()
+	if errRefresh != nil {
+		return errRefresh
+	}
+	return nil
 }

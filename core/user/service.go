@@ -2,8 +2,6 @@ package user
 
 import (
 	"errors"
-	"fmt"
-	"github.com/dgrijalva/jwt-go"
 	"log"
 	"math/rand"
 	"time"
@@ -161,102 +159,56 @@ func VerifyUser(verifyBody VerificationRequestBody) (int, string, error) {
 
 }
 
-func (login *LoginRequestBody) CreateToken() (string, error) {
-
-	var (
-		// store database query results
-		userData struct {
-			Username string `json:"username"`
-			Password string `json:"password"`
-		}
-
-		// Get items from db query
-		getUserData = `SELECT login_id, user_id, username, password
-		FROM way_api.login
-		WHERE username = $1`
-	)
-
-	row := db.DBConnection.QueryRow(getUserData, login.PhoneNumber)
-	err := row.Scan(
-		&userData.Username,
-		&userData.Password,
-	)
-	if err != nil {
-		return "", err
-	}
-
-	err = ComparePasswords(login.Password, userData.Password)
-	if err != nil {
-		return "", err
-	}
-
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"username": login.PhoneNumber,
-		"password": login.Password,
-	})
-
-	tokenString, err := token.SignedString([]byte("way"))
-
-	if err != nil {
-		fmt.Println(err)
-		return "", err
-	}
-
-	return tokenString, nil
-}
-
 func LogIn(login LoginRequestBody) (LoginResponseBody, int, string, error) {
+	var response LoginResponseBody
 
-	successResponse := LoginResponseBody{}
-
-	var (
-		userData LoginData
-
-		getUserData = `SELECT login_id, user_id, username, password
-		FROM way_api.login
-		WHERE username = $1`
-	)
-
-	// check username
-	row, err := db.DBConnection.Query(getUserData, login.PhoneNumber)
-	if err != nil {
-		log.Println(err)
-		return successResponse, 400, "invalid username or password", err
+	// an object of the database data we will work with
+	type dbData struct {
+		UserId   string
+		LoginId  string
+		Username string
+		Password string
 	}
 
-	err = row.Scan(
-		&userData.LoginId,
-		&userData.UserId,
-		&userData.Username,
-		&userData.Password,
-	)
+	var d dbData
+
+	// get details from database by username
+	checkUsernameQuery := `SELECT user_id, login_id, username,  password FROM way_api.login WHERE username=$1`
+
+	err := db.DBConnection.QueryRow(checkUsernameQuery, login.Username).Scan(&d.UserId, &d.LoginId, &d.Username, &d.Password)
 	if err != nil {
 		log.Println(err)
-		return successResponse, 500, "internal server error", err
+		return response, 400, "username or password invalid", err
+	}
+
+	// check if user is verified
+	checkVerifyQuery := `SELECT verified FROM way_api.user WHERE user_id=$1`
+
+	var verified bool
+
+	err = db.DBConnection.QueryRow(checkVerifyQuery, d.UserId).Scan(&verified)
+	if err != nil {
+		log.Println(err)
+		return response, 400, "user not verified", err
 	}
 
 	// compare passwords
-	err = ComparePasswords(login.Password, userData.Password)
+	err = ComparePasswords(login.Password, d.Password)
 	if err != nil {
 		log.Println(err)
-		return successResponse, 400, "invalid username or password", err
+		return response, 400, "username or password invalid", err
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"login_id": userData.LoginId,
-		"username": login.PhoneNumber,
-		"password": login.Password,
-	})
+	// at this point username and password are valid and user is a verified user
 
-	tokenString, err := token.SignedString([]byte("way"))
-
+	// create token
+	tokenBody, err := CreateToken(d.UserId, d.LoginId)
 	if err != nil {
-		fmt.Println(err)
-		return successResponse, 500, "internal server error", err
+		log.Println(err)
+		return response, 500, "internal server error", err
 	}
 
-	successResponse.Token = tokenString
+	response.Token = tokenBody
 
-	return successResponse, 200, "logged in", nil
-
+	return response, 200, "login successful", nil
 }

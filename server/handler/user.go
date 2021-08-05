@@ -32,8 +32,6 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Println(string(requestBody))
-
 	// decode body
 	err = json.Unmarshal(requestBody, &newUser)
 	if err != nil {
@@ -240,8 +238,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		)
 		return
 	}
-
-	log.Println(requestBody)
 
 	// decode body
 	err = json.Unmarshal(requestBody, &userLogin)

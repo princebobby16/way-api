@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e0adbcb-63c1-4c16-9d64-63bda57c152b" name="Default Changelist" comment="edited gitignore to include dbconf.yml">
+      <change afterPath="$PROJECT_DIR$/pkg/redis/jwt.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/user/methods.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/user/methods.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/user/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/user/model.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/user/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/user/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/db/migrations/20190607172606_Init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/example.env" beforeDir="false" afterPath="$PROJECT_DIR$/example.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/handler/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handler/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/request/request.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,11 +219,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pkg" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/server/routes" />
       <recent name="$PROJECT_DIR$/core/friend" />
       <recent name="$PROJECT_DIR$/src/server" />
-      <recent name="$PROJECT_DIR$/src/core" />
-      <recent name="$PROJECT_DIR$/api/multiplexer" />
     </key>
   </component>
   <component name="RunManager">
